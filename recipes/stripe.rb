@@ -76,6 +76,10 @@ end
 # Remove any characters other than alphanumeric and dashes and replace with dashes
 sanitized_nickname = device_nickname.downcase.gsub(/[^-a-z0-9]/, '-')
 
+execute 'run pvscan to scan recently attached volumes' do
+    command 'pvscan'
+end
+
 # Setup LVM on the volumes. The following resources will:
 #   - initialize the physical volumes for use by LVM
 #   - create volume group and logical volume
