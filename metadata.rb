@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@rightscale.com'
 license          'Apache 2.0'
 description      'Provides recipes for managing volumes on a Server in a RightScale supported cloud'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.7'
+version          '1.0.8'
 
 depends 'chef_handler', '~> 1.1.6'
 depends 'filesystem', '~> 0.10.0'
@@ -58,6 +58,14 @@ attribute 'rs-storage/device/iops',
     ' Example: 100',
   :recipes => ['rs-storage::volume', 'rs-storage::stripe'],
   :required => 'optional'
+
+attribute 'rs-storage/device/encrypted',
+  :display_name => 'Device Encryption',
+  :description => 'Should the device be encrypted',
+  :recipes => ['rs-storage::volume', 'rs-storage::stripe'],
+  :required => 'optional',
+  :choice => ['true','false'],
+  :type => 'string'
 
 attribute 'rs-storage/device/volume_type',
   :display_name => 'Volume Type',

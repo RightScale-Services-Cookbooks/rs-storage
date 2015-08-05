@@ -47,6 +47,7 @@ volume_options = {}
 volume_options[:iops] = node['rs-storage']['device']['iops'] if node['rs-storage']['device']['iops']
 volume_options[:volume_type] = node['rs-storage']['device']['volume_type'] if node['rs-storage']['device']['volume_type']
 volume_options[:controller_type] = node['rs-storage']['device']['controller_type'] if node['rs-storage']['device']['controller_type']
+volume_options[:encrypted] = node['rs-storage']['device']['encrypted'] if node['rs-storage']['device']['encrypted']
 
 # Install packages required for setting up LVM
 include_recipe 'lvm::default'
