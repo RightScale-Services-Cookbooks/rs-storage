@@ -36,6 +36,7 @@ volume_options = {}
 volume_options[:iops] = node['rs-storage']['device']['iops'] if node['rs-storage']['device']['iops']
 volume_options[:volume_type] = node['rs-storage']['device']['volume_type'] if node['rs-storage']['device']['volume_type']
 volume_options[:controller_type] = node['rs-storage']['device']['controller_type'] if node['rs-storage']['device']['controller_type']
+volume_options[:encrypted] = node['rs-storage']['device']['encrypted'] if node['rs-storage']['device']['encrypted']
 
 # rs-storage/restore/lineage is empty, creating new volume
 if node['rs-storage']['restore']['lineage'].to_s.empty?

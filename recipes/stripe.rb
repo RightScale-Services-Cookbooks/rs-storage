@@ -47,6 +47,7 @@ volume_options = {}
 volume_options[:iops] = node['rs-storage']['device']['iops'] if node['rs-storage']['device']['iops']
 volume_options[:volume_type] = node['rs-storage']['device']['volume_type'] if node['rs-storage']['device']['volume_type']
 volume_options[:controller_type] = node['rs-storage']['device']['controller_type'] if node['rs-storage']['device']['controller_type']
+volume_options[:encrypted] = node['rs-storage']['device']['encrypted'] if node['rs-storage']['device']['encrypted']
 
 # Install packages required for setting up LVM
 include_recipe 'lvm::default'
@@ -74,6 +75,10 @@ end
 
 # Remove any characters other than alphanumeric and dashes and replace with dashes
 sanitized_nickname = device_nickname.downcase.gsub(/[^-a-z0-9]/, '-')
+
+execute 'run pvscan to scan recently attached volumes' do
+    command 'pvscan'
+end
 
 # Setup LVM on the volumes. The following resources will:
 #   - initialize the physical volumes for use by LVM
